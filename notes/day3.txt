@@ -1,0 +1,32 @@
+A rucksack with two compartments is a single line string of characters (i.e. vJrwpWtwJgWrhcsFMMfFFhFp)
+    - item type is case sensitive (a is different from A)
+    - all items of a type must be only in one of the compartments 
+        - i.e. items of type a should only be in one or none of the compartments. Not in both.
+
+
+Part 1
+Ideas
+- Read input from file
+- Split each line into halfs for each compartments
+
+One way to solve it would be the bruteforce way:
+    - for each character in one segment, see if it exists in the other segment
+    - if so, raise that it's been packed wrong and list the priority
+    - this relies on brute force and I dont think its the best way to go about the problem.
+
+A slightly better way would be to:
+    - loop over each segment and create a count map of each character in the string
+    - then, we can loop through the object keys to determine where there is overlap between the two comparmnets
+    - I like this idea significantly more than the previous method.
+
+
+Part 2
+    - Find the item type that is common to every set of 3 rows
+    - sum the priority of the unique item types again
+
+    This should be an easy extension of part 1.
+        - use a sliding window with a size of 3 over the already existing array of parsed bag contents (merge the two compartments)
+        - find the intersecting item types of row 1 and 2
+        - find the intersecting item types of the result of the above and row 3
+        - compute the priority
+        - reduce for solution answer
