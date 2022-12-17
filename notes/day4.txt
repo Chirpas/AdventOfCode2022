@@ -1,0 +1,30 @@
+Challenge:
+    - Clear sections of camp for supplies
+    - each section of the camp has a unique ID number
+    - each elf assigned a list of section IDs
+    - However, there is overlap of assigned section IDs
+
+Input:
+    - a row is a pair of elfs, each elf is given a range of ids to clear. i.e. 6-8 is sections [6, 7, 8]
+
+Objective:
+    - find all the pairs where one elf's sector id range is a full subset of their partner's range
+
+Thoughts:
+    - first off, probably best to parse the data into an array of objects with the upper and lower bounds of each elf's sector id range
+    - we know that the rance of each elf is continuous so rather than check each element, we only need to check the outer bounds of each range.
+    - infact, for one range to be a subset of the other, if a = [a.l, a.u] is range 1, and b = [b.l, b.u] is range 2, a is a subset of b if:
+        - a.l >= b.l && a.u <= b.u
+        - similarly, b is the subset if...
+        - b.l >= a.l && b.u <= a.u
+    - so really, once parsed, we have a very simple conditional comparision. Add to a list of duplicates if condition is true
+
+Part 2:
+    - How many pairs have overlap at all?
+
+Thoughts:
+    - Can solve this problem in a similar way as above, the checks just become a little more complex, but not much. If any one of the conditions are true, the ranges are not mutually exclusive
+    - Conditions for mutual exclusivity:
+        - a.u => b.l && a.u <= b.u  [Range b contains a subset of Range a]
+        - a.l => b.l && a.l <= b.u  [Range b contains a subset of Range a]
+        - a.l <= b.l && a.u >= b.u  [Range b is a subset of Range a]
