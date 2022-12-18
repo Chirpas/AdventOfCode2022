@@ -1,0 +1,20 @@
+Giant crane moving crates around a loading area.
+    - crates can only be accessed one at a time
+    - first in, last out policy
+
+Goal:
+    - using a set of instructions, track the state of the box movements
+
+Thoughts:
+    - read input into two data structures:
+        1. an object of stacks
+        2. an array of instructions
+    - for each instruction:
+        - pop n items off src and push them onto the dest.
+
+
+Part 2:
+    - now the crane can move up to three boxes at once
+    - not much needs to change, just modify the pop/push logic.
+    - Infact, have an intermediate stack, push up to three crates into it, then pop until it's empty onto the destination.
+    - Another way of doing this would be to slice the src array and push to destination
