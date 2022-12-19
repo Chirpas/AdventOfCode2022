@@ -1,0 +1,24 @@
+- communication system that's slightly buggy
+- need to communicate with the elves
+- communication protocol dictates that each message starts with 4 non-unique characters in sequence
+
+Goal:
+    - write a subroutine that identifies the start of communication character sequence
+
+Thoughts:
+    - initial thought is to use a sliding window of size n=4 over the buffer input until a window where the characters are all unique
+    - second thought is to use a regex pattern, but I'm not sure how I'd go about doing that.
+    - Sliding window is probably the easiest
+        - while match not found:
+            - increment window position
+            - slice array
+            - convert to set
+            - if length of set elements == 4
+                we have a marker
+
+Part 2:
+    - Now need to look for a start of message marker which is 14 distinct characters
+    - easiest way to solve this is to just increase the sliding window size to 14 characters
+    - of course this isnt the most efficient way to do this. since there will be some extra processing requried.
+        - an extension to this idea would be to get the location in the window where the last duplicate occurs and shift the window by the duplicate's position to avoid testing another window with the same duplicate characters
+        - However, I'm lazy and for a short puzzle like this, if it's not required, its not requied.
