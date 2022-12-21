@@ -1,0 +1,28 @@
+- The communications device has more problems than the elves let on
+- doesnt have enough space to install the patch to fix the problems
+- need to find redundant files to remove to make space for the critical upgrade
+
+Goal:
+- Find all directories with a total size of <=100000 and the sum of their sizes
+
+Thoughts:
+    - first, need to modify the input to make it a little more workable
+        - I think best way is probably to split on the $ (command) character so we get a list of commands
+        - splitting each row by the new line character will then give an array with the command in the first position, and all following elements as command outputs.
+    - Have a address stack to keep track of where we are in the system.
+        - when cd / is encountered, reset stack
+        - when .., split off the last directory
+        - when cd "addr" is encountered, push to stack
+    - use a tree datastructure to recreate the filesystem
+    - once the filesystem has been replicated, can traverse the tree to find the total file sizes
+    - I've never written a non-binary tree from scratch before so I think this is a good opportunity to learn :)
+
+
+Part 2:
+    - Need to free up atleast 8381165 from the device
+    - find the smallest folder that can be deleted that will give the required space
+
+Thoughts:
+    - this is a very similar problem to listing the files below x size
+    - much easier than the previous problem
+    - list all folders with a size >= 8381165, then find min value.
